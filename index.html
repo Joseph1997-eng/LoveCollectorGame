@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Love Game</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Kufam&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+    <script defer src="scripts.js"></script>
+</head>
+<body>
+    <div id="thankText" style="display:none;">
+        You Saved our Queen,<br>
+        Thanks a lot handsome man!<br>
+        You did it by Collecting Queen's Heart<br>
+        in your Bucket, and guess what Our Queen<br>
+        wants to be Yours forever.<br>
+        Happy Valentine's Month.
+    </div>
+    <h1 class="celebration wiggle"></h1>
+    <audio src="Custom.mp3" id="bg_audio"></audio>
+    <img src="castle.jpg" id="game_bg_img">
+
+    <!-- Remove fixed width/height; canvas size will be set dynamically -->
+    <canvas id="container"></canvas>
+    <div id="quote" style="display:none;">I could search my whole life<br> through and never find another you.</div>
+    <center>
+        <img src="victory.png" 
+             alt="After Win" id="after_win_img" style="display:none;">
+    </center>
+    <div class="preloader">
+        <h1>Love Collector Game<br>Special Game</h1>
+        <center>
+            <img src="queen.png" alt="Loading Image" style="max-width:auto; height:auto; width:512px, height:512px">
+        </center>
+        <div class="pulse"></div>
+        <center>
+            <p style="font-size:20px;">Loading...</p>
+            <i>Please Wait...</i>
+            <br>
+            <i>If it takes more time to load, feel free to reach out in the comments<br>Or<br>simply modify the code.</i>
+        </center>
+    </div>
+    <section id="section1">
+        <h1>✧ Story time ✧</h1>
+        <center><hr></center>
+        <br>
+        <p>Our queen <b>Barbie</b></p>
+        <div class="swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="barbie.gif" alt="omg1">
+                </div>
+                <div class="swiper-slide">
+                    <img src="barbie.gif" alt="omg2">
+                </div>
+                <div class="swiper-slide">
+                    <img src="barbie.gif" alt="omg3">
+                </div>
+                <div class="swiper-slide">
+                    <img src="barbie.gif" alt="omg4">
+                </div>
+            </div>
+            <div class="swiper-pagination" style="top:200px;"></div>
+        </div>
+        <center><hr style="margin-top:-90px;"></center>
+        <div class="con1">
+            <div id="typedtext"></div>
+            <script>
+                var aText = ["We've just received some shocking news! Our queen, Barbie, has been defeated in a war and taken captive. <br> Wait.. you're a sturdy and handsome man - we need someone like you to rescue her!"];
+                var iSpeed = 100;
+                var iIndex = 0;
+                var iArrLength = aText[0].length;
+                var iScrollAt = 20;
+                var iTextPos = 0;
+                var sContents = '';
+                var iRow;
+                function typewriter() {
+                    sContents =  ' ';
+                    iRow = Math.max(0, iIndex - iScrollAt);
+                    var destination = document.getElementById("typedtext");
+                    while (iRow < iIndex) {
+                        sContents += aText[iRow++] + '<br />';
+                    }
+                    destination.innerHTML = sContents + aText[iIndex].substring(0, iTextPos) + "_";
+                    if (iTextPos++ == iArrLength) {
+                        iTextPos = 0;
+                        iIndex++;
+                        if (iIndex != aText.length) {
+                            iArrLength = aText[iIndex].length;
+                            setTimeout(typewriter, 500);
+                        }
+                    } else {
+                        setTimeout(typewriter, iSpeed);
+                    }
+                }
+                typewriter();
+            </script>
+        </div>
+        <center>
+            <div class="con1" style="background-color:#9aaaf8;">
+                <b style="color:black; font-size:20px;">Save her</b>
+                <br>
+                <img src="captivated.jpg" alt="Save Her" style="max-width:100%; height:auto;">
+                <br><br>
+                <button class="btn btn-custom" onclick="showSec2()">Let's save her</button>
+                <br><b>OR</b><br>
+                <button class="btn btn-custom" onclick="showSec3()">Let her Die</button>
+            </div>
+        </center>
+    </section>
+    <section id="sec2" style="display: none;"></section>
+    <section id="sec3" style="display: none;">
+        <div class="con1" style="background-color:#1560BD; height:auto;">
+            <img src="fail.jpg" alt="Game Over" style="max-width:auto; height:auto;" id="over_img">
+            <center><b id="over_txt" style="font-size:20px;">It's OVER</b></center>
+        </div>
+    </section>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        function showSec2() {
+            document.getElementById('section1').style.display = 'none';
+            document.getElementById('sec2').style.display = 'block';
+            startGame();
+        }
+        function showSec3() {
+            document.getElementById('sec2').style.display = 'none';
+            document.getElementById('section1').style.display = 'none';
+            document.getElementById('sec3').style.display = 'block';
+            document.body.style.backgroundColor = '#000';
+        }
+    </script>
+    <script src="scripts.js"></script>
+</body>
+</html>
